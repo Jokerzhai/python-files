@@ -1,0 +1,17 @@
+import re
+pattern = re.compile(r'\d+')
+
+result1 = re.match(pattern,'192abc')
+
+if result1:
+	print reult1.group()
+else:
+	print '∆•≈‰ ß∞‹1'
+
+result2 = re.match(pattern,'abc192')
+
+
+if result2:
+	print reult2.group()
+else:
+	print '∆•≈‰ ß∞‹2'

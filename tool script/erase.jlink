@@ -1,0 +1,6 @@
+si 1
+speed 4000
+device MIMXRT1062xxx6A
+exec EnableEraseAllFlashBanks
+erase
+qc
