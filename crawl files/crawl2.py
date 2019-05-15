@@ -44,6 +44,7 @@ def download(url):
 
 def main():
     url = 'http://tieba.baidu.com/p/2256306796'
+    #url = 'https://www.zhihu.com/question/292901966'
     download(url)
 
 if __name__ == '__main__':
