@@ -39,8 +39,8 @@ def download_pic2(img_lists, answer_list,dir_name):
 
 #    for image_url in img_lists:
 #        file_name = dir_name + os.sep + basename(urlsplit(image_url)[2])
-    for i in range(len(img_list)):
-        image_url = img_list[i]
+    for i in range(len(img_lists)):
+        image_url = img_lists[i]
         answer_id = answer_list[i]
         file_name = dir_name + os.sep + answer_id + \
             '_' + basename(urlsplit(image_url)[2])
@@ -150,7 +150,10 @@ def get_image_url(qid, headers, path):
 
         # reg = r'https://pic\d.zhimg.com/[a-fA-F0-9]{5,32}_\w+.jpg'
         imgreg = re.compile('data-original="(.*?)"', re.S)
-
+		
+        answerreg = re.compile('data-entry-url="\\\\/question\\\\/{question_id}\\\\/answer\\\\/(.*?)"'.format(question_id=qid), re.S)
+#		answerreg = re.compile('data-entry-url="\\\\/question\\\\/{question_id}\\\\/answer\\\\/(.*?)"', re.S)
+		
         for answer in answers:
             tmp_list = []
             url_items = re.findall(imgreg, answer)
@@ -210,8 +213,8 @@ def main_download():
     # title = '拥有一副令人羡慕的好身材是怎样的体验？'
     # question_id = 297715922
 
-    # title = '身材好是一种怎样的体验？'
-    # question_id = 26037846
+    title = '身材好是一种怎样的体验？'
+    question_id = 26037846
 
     # title = '女孩子胸大是什么体验？'
     # question_id = 291678281
@@ -237,8 +240,8 @@ def main_download():
     # title = '有着一双大长腿是什么感觉？'
     # question_id = 292901966
 
-    title = '拥有一双大长腿是怎样的体验？'
-    question_id = 285321190
+    # title = '拥有一双大长腿是怎样的体验？'
+    # question_id = 285321190
 
     # title = '大胸女生如何穿衣搭配？'
     # question_id = 26297181
@@ -277,7 +280,7 @@ def main_download():
         img_list,answer_list = get_image_url(question_id, headers, path)
 
     # 下载文件
-    download_pic2(img_list, path)
+    download_pic2(img_list, answer_list,path)
     
 if __name__ == '__main__':
     main_download()
